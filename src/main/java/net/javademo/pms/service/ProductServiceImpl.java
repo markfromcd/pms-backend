@@ -7,6 +7,8 @@ import net.javademo.pms.mapper.ProductMapper;
 import net.javademo.pms.model.ProductModel;
 import net.javademo.pms.repository.ProductRepository;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,5 +59,37 @@ public class ProductServiceImpl implements ProductService{
         );
 
         productRepository.deleteById(productId);
+    }
+
+    @Override
+    public ProductModel patchProduct(Long productId, Map<String, Object> fields) {
+        Product product = productRepository.findById(productId).orElseThrow(
+                () -> new ResourceNotFoundException("Product not exists with given id: " + productId)
+        );
+        // Apply only the fields that are present in the request
+        fields.forEach((key, value) -> {
+            switch (key) {
+                case "name":
+                    product.setName((String) value);
+                    break;
+                case "price":
+                    product.setPrice(value instanceof Integer ? Long.valueOf((Integer) value) : (Long) value);
+                    break;
+                case "stock":
+                    product.setStock(value instanceof Integer ? (Integer) value :
+                                    value instanceof Long ? ((Long) value).intValue() : null);
+                    break;
+                case "category":
+                    product.setCategory((String) value);
+                    break;
+                case "description":
+                    product.setDescription((String) value);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + key);
+            }
+        });
+        Product updatedProduct = productRepository.save(product);
+        return ProductMapper.mapToProductModel(updatedProduct);
     }
 }

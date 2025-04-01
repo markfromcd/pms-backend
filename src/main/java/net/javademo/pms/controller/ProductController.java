@@ -52,4 +52,12 @@ public class ProductController {
         return ResponseEntity.ok("Product deleted successfully!");
     }
 
+    //Build Patch Product REST API
+    @PatchMapping("{id}")
+    public ResponseEntity<ProductModel> patchProduct(@PathVariable("id") Long productId,
+                                                     @RequestBody Map<String, Object> fields) {
+        ProductModel productModel = productService.patchProduct(productId, fields);
+        return ResponseEntity.ok(productModel);
+    }
+
 }

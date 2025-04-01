@@ -15,4 +15,6 @@ public interface ProductService {
     ProductModel updateProduct(Long productId, ProductModel updatedProductModel);
 
     void deleteProduct(Long productId);
+
+    ProductModel patchProduct(Long productId, Map<String, Object> fields); // Use object, generic, many different types
 }
