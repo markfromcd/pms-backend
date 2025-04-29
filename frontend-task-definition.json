@@ -1,0 +1,22 @@
+{
+  "family": "frontend-task-definition",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::<your-account-id>:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::<your-account-id>:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "frontend",
+      "image": "frontend-placeholder",
+      "essential": true,
+      "portMappings": [
+        {
+          "containerPort": 80,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  ]
+}
