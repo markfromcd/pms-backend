@@ -1,0 +1,26 @@
+<h2> Customer List</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th> Name </th>
+            <th> Email </th>
+            <!-- <th> Address </th>
+            <th> Phone </th> -->
+            <th> Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let customer of customers">
+            <td> {{customer.name}} </td>
+            <td> {{customer.email}} </td>
+            <!-- <td> {{customer.address}} </td>
+            <td> {{customer.phone}} </td> -->
+            <td>
+                <button (click)="updateCustomer(customer.id!)" class="btn btn-info"> Update </button>
+                <button (click)="deleteCustomer(customer.id!)" class="btn btn-danger" style="margin-left: 10px;"> Delete </button>
+                <button (click)="viewCustomer(customer.id!)" class="btn btn-info" style="margin-left: 10px;"> View </button>
+                <button (click)="viewCustomerCart(customer.id!)" class="btn btn-success" style="margin-left: 10px;"> View Cart </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
