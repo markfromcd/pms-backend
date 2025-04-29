@@ -1,7 +1,9 @@
 name: Deploy to AWS ECS
+
 on:
   push:
-    branches: [ main ]
+    branches: [ "*" ]
+  workflow_dispatch:
 jobs:
   build-and-deploy:
     runs-on: [ ubuntu-latest ]
@@ -55,6 +57,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: springboot-example-service
+          service: app-service
           cluster: DevCluster1
           wait-for-service-stability: true
