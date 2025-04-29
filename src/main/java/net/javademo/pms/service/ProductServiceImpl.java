@@ -1,10 +1,12 @@
 package net.javademo.pms.service;
 
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import net.javademo.pms.entity.Product;
 import net.javademo.pms.exception.ResourceNotFoundException;
 import net.javademo.pms.mapper.ProductMapper;
 import net.javademo.pms.model.ProductModel;
+import net.javademo.pms.repository.CartItemRepository;
 import net.javademo.pms.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService{
 
     private ProductRepository productRepository;
+    private CartItemRepository cartItemRepository;//new
 
     @Override
     public ProductModel createProduct(ProductModel productModel) {
@@ -47,17 +50,20 @@ public class ProductServiceImpl implements ProductService{
         product.setName(updatedProductModel.getName());
         product.setPrice(updatedProductModel.getPrice());
         product.setStock(updatedProductModel.getStock());
+        product.setCategory(updatedProductModel.getCategory());//new
+        product.setDescription(updatedProductModel.getDescription());//new
         Product updatedProductObj = productRepository.save(product);//save and update it to db
         //if no that id, perform insert operations
         return ProductMapper.mapToProductModel(updatedProductObj);
     }
 
+    @Transactional
     @Override
     public void deleteProduct(Long productId) {
         Product product = productRepository.findById(productId).orElseThrow(
                 () -> new ResourceNotFoundException("Product not exists with given id: " + productId)
         );
-
+        cartItemRepository.deleteByProduct(product);//new
         productRepository.deleteById(productId);
     }
 

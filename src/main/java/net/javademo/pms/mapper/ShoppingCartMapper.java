@@ -13,7 +13,7 @@ public class ShoppingCartMapper {
         cartModel.setId(cart.getId());
 
         // Map cart items
-        if (cartModel.getItems() != null && !cartModel.getItems().isEmpty()) {
+        if (cart.getItems() != null && !cart.getItems().isEmpty()) {
             cartModel.setItems(cart.getItems().stream()
                     .map(CartItemMapper::mapToCartItemModel)
                             .collect(Collectors.toList()));

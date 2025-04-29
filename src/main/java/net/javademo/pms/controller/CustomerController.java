@@ -13,6 +13,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/customers")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CustomerController {
 
     private CustomerService customerService;
@@ -57,7 +58,7 @@ public class CustomerController {
     @DeleteMapping("{id}")
     public ResponseEntity<String> deleteCustomer(@PathVariable("id") Long customerId) {
         customerService.deleteCustomer(customerId);
-        return ResponseEntity.ok("Customer deleted successfully!");
+        return ResponseEntity.noContent().build();
     }
 
     // Patch customer REST API

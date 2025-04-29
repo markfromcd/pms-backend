@@ -11,6 +11,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/products")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
 
     private ProductService productService;
@@ -49,7 +50,8 @@ public class ProductController {
     public ResponseEntity<String> deleteProduct(@PathVariable("id") Long productId) {
         productService.deleteProduct(productId);
 
-        return ResponseEntity.ok("Product deleted successfully!");
+//        return ResponseEntity.ok("Product deleted successfully!");
+        return ResponseEntity.noContent().build();
     }
 
     //Build Patch Product REST API

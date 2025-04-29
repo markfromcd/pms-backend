@@ -21,7 +21,8 @@ public class ShoppingCart {
     private Long id;
 
     // One to many relationship with cartitems
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)//map the object in CartItem
+    //@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)//map the object in CartItem
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)//map the object in CartItem, lazy loading by default
     private List<CartItem> items = new ArrayList<>();
 
     // One to one relationship with customer (bidirectional)
