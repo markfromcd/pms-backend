@@ -8,7 +8,8 @@ import { ShoppingCart } from './shopping-cart';
   providedIn: 'root'
 })
 export class ShoppingCartService {
-  private apiUrl = "http://localhost:8080/api/carts";
+  // private apiUrl = "http://localhost:8080/api/carts";
+  private apiUrl = "http://pms-alb-572541170.us-east-2.elb.amazonaws.com/api/carts";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -22,7 +23,7 @@ export class ShoppingCartService {
 
   addItemToCart(cartId: number, productId: number, quantity: number): Observable<ShoppingCart> {
     return this.httpClient.post<ShoppingCart>(
-      `${this.apiUrl}/${cartId}/items?productId=${productId}&quantity=${quantity}`, 
+      `${this.apiUrl}/${cartId}/items?productId=${productId}&quantity=${quantity}`,
       {}
     );
   }

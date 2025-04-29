@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CustomerService {
-  private apiUrl = "http://localhost:8080/api/customers";
+  // private apiUrl = "http://localhost:8080/api/customers";
+  private apiUrl = "http://pms-alb-572541170.us-east-2.elb.amazonaws.com/api/customers"
   constructor(private httpClient: HttpClient) { }
 
   getCustomers(): Observable<Customer[]> {

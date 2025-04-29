@@ -8,7 +8,8 @@ import { get } from 'http';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiUrl = "http://localhost:8080/api/products";
+  // private apiUrl = "http://localhost:8080/api/products";
+  private apiUrl = "http://pms-alb-572541170.us-east-2.elb.amazonaws.com/api/products"
 
   constructor(private httpClient: HttpClient) { }
 
