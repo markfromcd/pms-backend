@@ -14,7 +14,7 @@ import java.util.Map;
 @RequestMapping("/api/customers")
 @AllArgsConstructor
 @CrossOrigin(origins = {
-        "*"
+        "http://angular-frontend-yc.s3-website.us-east-2.amazonaws.com"
 })
 public class CustomerController {
 

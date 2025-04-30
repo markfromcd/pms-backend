@@ -12,7 +12,7 @@ import java.util.*;
 @RequestMapping("/api/products")
 @AllArgsConstructor
 @CrossOrigin(origins = {
-        "*"
+        "http://angular-frontend-yc.s3-website.us-east-2.amazonaws.com"
 })
 public class ProductController {
 

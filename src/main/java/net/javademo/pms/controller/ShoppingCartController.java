@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/carts")
 @AllArgsConstructor
 @CrossOrigin(origins = {
-        "*"
+        "http://angular-frontend-yc.s3-website.us-east-2.amazonaws.com"
 })
 public class ShoppingCartController {
 
