@@ -12,8 +12,7 @@ import java.util.*;
 @RequestMapping("/api/products")
 @AllArgsConstructor
 @CrossOrigin(origins = {
-        "http://localhost:4200",
-        "http://pms-alb-572541170.us-east-2.elb.amazonaws.com"
+        "*"
 })
 public class ProductController {
 
